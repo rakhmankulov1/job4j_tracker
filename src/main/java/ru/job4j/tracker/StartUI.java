@@ -14,5 +14,12 @@ public class StartUI {
         /* для задачи  7. toString [#325820] */
         Item secondTime = new Item();
         System.out.println(secondTime);
+
+        /* для задачи  5. Tracker - хранилище [#325832] */
+        Item allFieldsItem = new Item(1, "Alexa");
+        Tracker firstTracker = new Tracker();
+        firstTracker.add(allFieldsItem);
+        System.out.println(firstTracker.findById(1));
+
     }
 }
