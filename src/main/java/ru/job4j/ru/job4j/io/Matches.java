@@ -8,7 +8,6 @@ public class Matches {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        boolean user = true;
         int whosRound = 0;
         while (matches > 0) {
             System.out.println("Количество спичек на столе: " + matches);
@@ -20,7 +19,7 @@ public class Matches {
                 System.out.println("Введённое число не соответствует диапазону от 1 до 3\n");
                 continue;
             } else if (matches - select <= 0) {
-                if (user && whosRound % 2 == 0) {
+                if (whosRound % 2 == 0) {
                     System.out.println("Победил второй игрок!");
                 } else {
                     System.out.println("Победил первый игрок!");
