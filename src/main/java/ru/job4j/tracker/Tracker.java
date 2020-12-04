@@ -7,6 +7,10 @@ public class Tracker {
     private int ids = 1;
     private int size = 0;
 
+    public Item[] getItems() {
+        return items;
+    }
+
     public Item add(Item item) {
         item.setId(ids++);
         items[size++] = item;
@@ -55,7 +59,7 @@ public class Tracker {
 
     public boolean replace(int id, Item item) {
         int index = indexOf(id);
-        if(index != -1) { //проверка параметров - валидация
+        if (index != -1) { //проверка параметров - валидация
             items[index] = item;
             items[index].setId(id);
         }
@@ -71,6 +75,4 @@ public class Tracker {
         }
         return index != -1;
     }
-
-
 }
