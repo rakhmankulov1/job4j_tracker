@@ -48,10 +48,8 @@ public class StartUI {
                 System.out.println("укажите id заявки, которую мы будем изменять");
                 int idForReplacement = Integer.valueOf(scanner.nextLine());
                 System.out.println("укажите имя заявки на которую мы будем заменять");
-                //Scanner scanner1 = new Scanner(System.in);
                 String replacementName = scanner.nextLine();
                 Item item1 = new Item(idForReplacement, replacementName);
-                tracker.replace(idForReplacement, item1);
                 if (tracker.replace(idForReplacement, item1)) {
                     System.out.println("Замена успешно проведена");
                 } else {
@@ -60,16 +58,12 @@ public class StartUI {
             } else if (select == 3) {
                 System.out.println("укажите id заявки, которую нужно удалить");
                 int idForDelete = Integer.valueOf(scanner.nextLine());
-                if (tracker.findById(idForDelete) == null) {
-                    System.out.println("Заявка с таким id не существует");
-                } else {
-                    tracker.delete(idForDelete);
-                    if (!tracker.delete(idForDelete)) {
+                if (tracker.delete(idForDelete)) {
                         System.out.println("Заявка успешно удалена");
                     } else {
                         System.out.println("Данные введены не верно либо заявка не найдена,попробуйте заново ");
                     }
-                }
+
             } else if (select == 4) {
                 System.out.println("укажите id заявки, которую нужно найти");
                 int idToFind = Integer.valueOf(scanner.nextLine());
