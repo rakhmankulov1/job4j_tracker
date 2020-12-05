@@ -79,8 +79,7 @@ public class StartUI {
                 String nameToFind = scanner.nextLine();
                 Item[] itemsToFind = tracker.findByName(nameToFind);
                 if (itemsToFind.length > 0) {
-                    Item[] items = tracker.findByName(nameToFind);
-                    for (Item itemsForPrint : items) {
+                    for (Item itemsForPrint : itemsToFind) {
                         System.out.println(itemsForPrint);
                     }
                 } else {
