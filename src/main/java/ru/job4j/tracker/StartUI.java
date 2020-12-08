@@ -29,13 +29,10 @@ public class StartUI {
         boolean run = true;
         while (run) {
             this.showMenu();
-            System.out.print("Select: ");
-            String msg = "";
-            int select = input.askInt(msg);
+            int select = input.askInt("Select: ");
             if (select == 0) {
                 System.out.println("=== Create a new Item ====");
-                System.out.print("Enter name: ");
-                String name = input.askStr(msg);
+                String name = input.askStr("Enter name: ");
                 Item item = new Item(name);
                 tracker.add(item);
             } else if (select == 1) {
@@ -44,10 +41,10 @@ public class StartUI {
                     System.out.println(itemsToPrint);
                 }
             } else if (select == 2) {
-                System.out.println("укажите id заявки, которую мы будем изменять");
-                int idForReplacement = input.askInt(msg);
-                System.out.println("укажите имя заявки на которую мы будем заменять");
-                String replacementName = input.askStr(msg);
+                int idForReplacement = input.askInt("укажите id заявки, которую"
+                        + " мы будем изменять:");
+                String replacementName = input.askStr("укажите имя заявки на которую"
+                       + " мы будем заменять:");
                 Item item1 = new Item(idForReplacement, replacementName);
                 if (tracker.replace(idForReplacement, item1)) {
                     System.out.println("Замена успешно проведена");
@@ -56,8 +53,7 @@ public class StartUI {
                            + " не найдена,попробуйте заново ");
                 }
             } else if (select == 3) {
-                System.out.println("укажите id заявки, которую нужно удалить");
-                int idForDelete = input.askInt(msg);
+                int idForDelete = input.askInt("укажите id заявки, которую нужно удалить:");
                 if (tracker.delete(idForDelete)) {
                     System.out.println("Заявка успешно удалена");
                 } else {
@@ -66,8 +62,7 @@ public class StartUI {
                 }
 
             } else if (select == 4) {
-                System.out.println("укажите id заявки, которую нужно найти");
-                int idToFind = input.askInt(msg);
+                int idToFind = input.askInt("укажите id заявки, которую нужно найти:");
                 new Item();
                 Item itemToFind;
                 itemToFind = tracker.findById(idToFind);
@@ -77,8 +72,7 @@ public class StartUI {
                     System.out.println("Заявка с таким id не найдена.");
                 }
             } else if (select == 5) {
-                System.out.println("укажите имя заявки которую мы будем искать");
-                String nameToFind = input.askStr(msg);
+                String nameToFind = input.askStr("укажите имя заявки которую мы будем искать:");
                 Item[] itemsToFind = tracker.findByName(nameToFind);
                 if (itemsToFind.length > 0) {
                     for (Item itemsForPrint : itemsToFind) {
