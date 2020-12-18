@@ -1,6 +1,10 @@
 package ru.job4j.tracker;
 
 public class StartUI {
+    private final Output out;
+    public StartUI(Output out) {
+        this.out = out;
+    }
 
     public static void main(String[] args) {
        /* Item firstTime = new Item();
@@ -19,19 +23,19 @@ public class StartUI {
         firstTracker.add(allFieldsItem);*/
 
         //для задачи  2.1 Реализация класса StartUI [#325764]
-
+        Output output = new ConsoleOutput();
         Input input = new ConsoleInput();
         Tracker tracker = new Tracker();
         UserAction[] actions = {
-                new CreateAction(),
-                new FindAllAction(),
-                new ReplaceAction(),
-                new DeleteAction(),
-                new FindByIdAction(),
-                new FindByNameAction(),
-                new ExitAction()
+                new CreateAction(output),
+                new FindAllAction(output),
+                new ReplaceAction(output),
+                new DeleteAction(output),
+                new FindByIdAction(output),
+                new FindByNameAction(output),
+                new ExitAction(output)
         };
-        new StartUI().init(input, tracker, actions);
+        new StartUI(output).init(input, tracker, actions);
     }
 
     public static void createItem(Input input, Tracker tracker) {
@@ -122,9 +126,9 @@ public class StartUI {
     }
 
     private void showMenu(UserAction[] actions) {
-        System.out.println("Menu.");
+        out.println("Menu.");
         for (int index = 0; index < actions.length; index++) {
-            System.out.println(index + ". " + actions[index].name());
+            out.println(index + ". " + actions[index].name());
         }
        /* System.out.println("Menu.");
         System.out.println("0. Add new Item");
