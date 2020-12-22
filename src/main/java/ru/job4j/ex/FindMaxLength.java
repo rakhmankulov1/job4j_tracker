@@ -9,7 +9,6 @@ public class FindMaxLength {
             if (el != null) {
                 if (el.length() > max) {
                     max = el.length();
-                    index++;
                 }
             }
         }
