@@ -6,7 +6,7 @@ public class UserStore {
         int index = 0;
         /* for-each */
         for (User allElements : users) {
-            if (allElements.getUsername() == login) {
+            if (allElements.getUsername().equals(login)) {
                 rsl = index;
             }
             index++;
