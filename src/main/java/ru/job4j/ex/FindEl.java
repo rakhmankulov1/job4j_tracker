@@ -8,6 +8,7 @@ public class FindEl {
         for (String allElements : value) {
             if (allElements.equals(key)) {
                 rsl = index;
+                break;
             }
             index++;
         }
