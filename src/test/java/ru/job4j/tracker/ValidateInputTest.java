@@ -43,7 +43,7 @@ public class ValidateInputTest {
     public void whenNegativeValidInput() {
         Output out = new StubOutput();
         Input in = new StubInput(
-                new String[] {"-1","1"}
+                new String[] {"Math.abs(-1)","1"}
         );
         ValidateInput input = new ValidateInput(out, in);
         int selected = input.askInt("Enter menu:");
