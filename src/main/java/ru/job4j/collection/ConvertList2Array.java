@@ -10,8 +10,8 @@ public class ConvertList2Array {
         for (Integer num : list) {
             array[i][j] = num;
             j++;
-            if (j == groups) {
-                j = (j / groups) - 1;
+            if (j == cells) {
+                j = 0;
                 i++;
             }
         }
