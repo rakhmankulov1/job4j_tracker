@@ -1,5 +1,8 @@
 package ru.job4j.tracker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StartUI {
     private final Output out;
 
@@ -27,15 +30,14 @@ public class StartUI {
         Output output = new ConsoleOutput();
         Input input = new ValidateInput(output, new ConsoleInput());
         Tracker tracker = new Tracker();
-        UserAction[] actions = {
-                new CreateAction(output),
-                new FindAllAction(output),
-                new ReplaceAction(output),
-                new DeleteAction(output),
-                new FindByIdAction(output),
-                new FindByNameAction(output),
-                new ExitAction(output)
-        };
+        List<UserAction> actions = new ArrayList<>(7);
+        actions.add(0, new CreateAction(output));
+        actions.add(1, new FindAllAction(output));
+        actions.add(2, new ReplaceAction(output));
+        actions.add(3, new DeleteAction(output));
+        actions.add(4, new FindByIdAction(output));
+        actions.add(5, new FindByNameAction(output));
+        actions.add(6, new ExitAction(output));
         new StartUI(output).init(input, tracker, actions);
     }
 
@@ -47,7 +49,7 @@ public class StartUI {
     }
 
     public static void findAllItems(Tracker tracker) {
-        Item[] allItems = tracker.findAll(tracker.getItems());
+        List<Item> allItems = tracker.findAll(tracker.getItems());
         for (Item itemsToPrint : allItems) {
             System.out.println(itemsToPrint);
         }
@@ -91,8 +93,8 @@ public class StartUI {
 
     public static void findItemByName(Input input, Tracker tracker) {
         String nameToFind = input.askStr("укажите имя заявки которую мы будем искать:");
-        Item[] itemsToFind = tracker.findByName(nameToFind);
-        if (itemsToFind.length > 0) {
+        List<Item> itemsToFind = tracker.findByName(nameToFind);
+        if (itemsToFind.size() > 0) {
             for (Item itemsForPrint : itemsToFind) {
                 System.out.println(itemsForPrint);
             }
@@ -101,39 +103,25 @@ public class StartUI {
         }
     }
 
-    public void init(Input input, Tracker tracker, UserAction[] actions) {
+    public void init(Input input, Tracker tracker, List<UserAction> actions) {
         boolean run = true;
         while (run) {
             this.showMenu(actions);
             int select = input.askInt("Select: ");
-            if (select < 0 || select >= actions.length) {
-                out.println("Wrong input, you can select: 0 .. " + (actions.length - 1));
+            if (select < 0 || select >= actions.size()) {
+                out.println("Wrong input, you can select: 0 .. " + (actions.size() - 1));
                 continue;
             }
-            UserAction action = actions[select];
+            UserAction action = actions.get(select);
             run = action.execute(input, tracker);
-         /*   if (select == 0) {
-                StartUI.createItem(input, tracker);
-            } else if (select == 1) {
-                StartUI.findAllItems(tracker);
-            } else if (select == 2) {
-                StartUI.replaceItem(input, tracker);
-            } else if (select == 3) {
-                StartUI.deleteItem(input, tracker);
-            } else if (select == 4) {
-                StartUI.findItemById(input, tracker);
-            } else if (select == 5) {
-                StartUI.findItemByName(input, tracker);
-            } else if (select == 6) {
-                run = false;
-            }*/
+
         }
     }
 
-    private void showMenu(UserAction[] actions) {
+    private void showMenu(List<UserAction> actions) {
         out.println("Menu.");
-        for (int index = 0; index < actions.length; index++) {
-            out.println(index + ". " + actions[index].name());
+        for (int index = 0; index < actions.size(); index++) {
+            out.println(index + ". " + actions.get(index).name());
         }
        /* System.out.println("Menu.");
         System.out.println("0. Add new Item");
