@@ -7,19 +7,14 @@ public class ConvertList2Array {
         int groups = (int) Math.ceil((double) list.size() / cells);
         int[][] array = new int[groups][cells];
         int j = 0, i = 0;
-        int index = 0;
         for (Integer num : list) {
-            if (index < list.size()) {
-                array[i][j] = list.get(index);
-                index++;
-                j++;
-                if (j == groups) {
-                    j = (j / groups) - 1;
-                    i++;
-                }
+            array[i][j] = num;
+            j++;
+            if (j == groups) {
+                j = (j / groups) - 1;
+                i++;
             }
         }
-
         return array;
     }
 
