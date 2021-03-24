@@ -6,9 +6,8 @@ import java.util.List;
 
 public class Tracker {
     private final List<Item> items = new ArrayList<>();
-    //private final Item[] items = new Item[100];
     private int ids = 1;
-    private int size = 0;
+
 
     public List<Item> getItems() {
         return items;
@@ -16,7 +15,7 @@ public class Tracker {
 
     public Item add(Item item) {
         item.setId(ids++);
-        items.add(size++, item);
+        items.add(item);
         return item;
     }
 
@@ -25,24 +24,17 @@ public class Tracker {
     }
 
     public List<Item> findAll(List<Item> items) {
-        List<Item> items1 = new ArrayList<>();
-        items1.addAll(items);
-        return items1;
+        return items;
     }
 
     public List<Item> findByName(String key) {
         List<Item> foundByName = new ArrayList<>();
-        int size = 0;
-        for (int index = 0; index < this.size; index++) {
-            Item item = items.get(index);
+        for (Item item:items) {
             if (item.getName().equals(key)) {
-                foundByName.add(size, item);
-                size++;
+                foundByName.add(item);
             }
         }
-        List<Item> foundByName1 = new ArrayList<>();
-        foundByName1.addAll(foundByName);
-        return foundByName1;
+        return foundByName;
     }
 
     public Item findById(int id) {
@@ -54,20 +46,24 @@ public class Tracker {
 
     private int indexOf(int id) {
         int rsl = -1;
-        for (int index = 0; index < size; index++) {
-            if (items.get(index).getId() == id) {
+        int index=0;
+        for (Item item:items) {
+            if (item.getId() == id) {
                 rsl = index;
                 break;
             }
+            index++;
+            }
+            return rsl;
         }
-        return rsl;
-    }
+
+
 
     public boolean replace(int id, Item item) {
         int index = indexOf(id);
         if (index != -1) { //проверка параметров - валидация
+            item.setId(id);
             items.set(index, item);
-            items.get(index).setId(id);
         }
         return index != -1;
     }
@@ -75,9 +71,7 @@ public class Tracker {
     public boolean delete(int id) {
         int index = indexOf(id);
         if (index != -1) { //проверка параметров - валидация
-            //System.arraycopy(items, index + 1, items, index, size - index);
-            items.set(size - 1, null);
-            size--;
+            items.remove(index);
         }
         return index != -1;
     }
