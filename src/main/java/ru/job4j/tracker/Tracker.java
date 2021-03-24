@@ -31,7 +31,7 @@ public class Tracker {
     }
 
     public List<Item> findByName(String key) {
-        List<Item> foundByName = new ArrayList<>(this.size);
+        List<Item> foundByName = new ArrayList<>();
         int size = 0;
         for (int index = 0; index < this.size; index++) {
             Item item = items.get(index);
@@ -40,7 +40,7 @@ public class Tracker {
                 size++;
             }
         }
-        List<Item> foundByName1 = new ArrayList<>(this.size);
+        List<Item> foundByName1 = new ArrayList<>();
         foundByName1.addAll(foundByName);
         return foundByName1;
     }
