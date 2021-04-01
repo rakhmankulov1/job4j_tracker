@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Item {
     private LocalDateTime created = LocalDateTime.now();
@@ -43,15 +44,6 @@ public class Item {
         return created;
     }
 
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
 
     @Override
     public String toString() {
@@ -60,5 +52,18 @@ public class Item {
                 ", id=" + id +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return id == item.id && created.equals(item.created) && name.equals(item.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(created, id, name);
     }
 }
