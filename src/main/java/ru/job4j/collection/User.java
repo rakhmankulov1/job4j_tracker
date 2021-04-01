@@ -29,7 +29,7 @@ public class User implements Comparable<User> {
     public int compareTo(User user) {
         int comparisonRsl = this.name.compareTo(user.name);
         if (comparisonRsl == 0) {
-            return this.age - user.age;
+            return Integer.compare(this.age, user.age);
         }
         return comparisonRsl;
     }
