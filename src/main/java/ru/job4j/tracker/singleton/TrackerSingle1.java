@@ -13,6 +13,4 @@ public enum TrackerSingle1 {
     public static void main(String[] args) {
         Tracker tracker = INSTANCE.getTracker();
     }
-
-
 }

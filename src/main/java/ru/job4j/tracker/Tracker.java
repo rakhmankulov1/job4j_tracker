@@ -1,13 +1,11 @@
 package ru.job4j.tracker;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Tracker {
     private final List<Item> items = new ArrayList<>();
     private int ids = 1;
-
 
     public List<Item> getItems() {
         return items;
@@ -29,7 +27,7 @@ public class Tracker {
 
     public List<Item> findByName(String key) {
         List<Item> foundByName = new ArrayList<>();
-        for (Item item:items) {
+        for (Item item : items) {
             if (item.getName().equals(key)) {
                 foundByName.add(item);
             }
@@ -46,18 +44,16 @@ public class Tracker {
 
     private int indexOf(int id) {
         int rsl = -1;
-        int index=0;
-        for (Item item:items) {
+        int index = 0;
+        for (Item item : items) {
             if (item.getId() == id) {
                 rsl = index;
                 break;
             }
             index++;
-            }
-            return rsl;
         }
-
-
+        return rsl;
+    }
 
     public boolean replace(int id, Item item) {
         int index = indexOf(id);

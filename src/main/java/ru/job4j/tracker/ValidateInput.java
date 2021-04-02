@@ -2,6 +2,7 @@ package ru.job4j.tracker;
 public class ValidateInput extends ConsoleInput {
     private final Output out;
     private final Input in;
+
     public ValidateInput(Output out, Input input) {
         this.out = out;
         this.in = input;

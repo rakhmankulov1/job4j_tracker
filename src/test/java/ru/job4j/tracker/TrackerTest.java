@@ -47,62 +47,62 @@ public class TrackerTest {
     }
 
     @Test
-    public void whenSortNaturalOrderById(){
+    public void whenSortNaturalOrderById() {
         Item item1 = new Item("alfa");
         Item item2 = new Item("beta");
         Item item3 = new Item("gamma");
         item1.setId(101);
         item2.setId(102);
         item3.setId(103);
-        List<Item> input = Arrays.asList(item3,item1,item2);
-        List<Item> expected = Arrays.asList(item1,item2,item3);
-        Collections.sort(input,new SortByIdItem());
-        assertEquals(expected,input);
+        List<Item> input = Arrays.asList(item3, item1, item2);
+        List<Item> expected = Arrays.asList(item1, item2, item3);
+        Collections.sort(input, new SortByIdItem());
+        assertEquals(expected, input);
 
     }
 
     @Test
-    public void whenSortNaturalOrderByName(){
+    public void whenSortNaturalOrderByName() {
         Item item1 = new Item("alfa");
         Item item2 = new Item("beta");
         Item item3 = new Item("gamma");
         item1.setId(101);
         item2.setId(102);
         item3.setId(103);
-        List<Item> input = Arrays.asList(item3,item1,item2);
-        List<Item> expected = Arrays.asList(item1,item2,item3);
-        Collections.sort(input,new SortByNameItem());
-        assertEquals(expected,input);
+        List<Item> input = Arrays.asList(item3, item1, item2);
+        List<Item> expected = Arrays.asList(item1, item2, item3);
+        Collections.sort(input, new SortByNameItem());
+        assertEquals(expected, input);
 
     }
 
     @Test
-    public void whenSortReverseOrderById(){
+    public void whenSortReverseOrderById() {
         Item item1 = new Item("alfa");
         Item item2 = new Item("beta");
         Item item3 = new Item("gamma");
         item1.setId(101);
         item2.setId(102);
         item3.setId(103);
-        List<Item> input = Arrays.asList(item3,item1,item2);
-        List<Item> expected = Arrays.asList(item3,item2,item1);
-        Collections.sort(input,new RevSortByIdItem());
-        assertEquals(expected,input);
+        List<Item> input = Arrays.asList(item3, item1, item2);
+        List<Item> expected = Arrays.asList(item3, item2, item1);
+        Collections.sort(input, new RevSortByIdItem());
+        assertEquals(expected, input);
 
     }
 
     @Test
-    public void whenSortReverseOrderByName(){
+    public void whenSortReverseOrderByName() {
         Item item1 = new Item("alfa");
         Item item2 = new Item("beta");
         Item item3 = new Item("gamma");
         item1.setId(101);
         item2.setId(102);
         item3.setId(103);
-        List<Item> input = Arrays.asList(item3,item1,item2);
-        List<Item> expected = Arrays.asList(item3,item2,item1);
-        Collections.sort(input,new RevSortByIdItem());
-        assertEquals(expected,input);
+        List<Item> input = Arrays.asList(item3, item1, item2);
+        List<Item> expected = Arrays.asList(item3, item2, item1);
+        Collections.sort(input, new RevSortByIdItem());
+        assertEquals(expected, input);
 
     }
 }

@@ -19,7 +19,7 @@ public class FindEl {
     }
 
     public static void main(String[] args) {
-        String[] array ={"aa","ss","dd"};
+        String[] array = {"aa", "ss", "dd"};
         try {
             indexOf(array, "ff");
         } catch (ElementNotFoundException e) {
