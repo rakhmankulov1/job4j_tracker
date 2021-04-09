@@ -14,7 +14,7 @@ public class Departments {
             }
         }
         List<String> result = new ArrayList<>(tmp);
-        sortAsc(result);
+        //sortAsc(result);
         return result;
     }
 

@@ -8,15 +8,17 @@ public class DepDescComp implements Comparator<String> {
         String[] array1 = o1.split("/");
         String[] array2 = o2.split("/");
         int result = 0;
-        int size = Math.min(array1.length, array2.length);
-        for (int index = 0; index < size; index++) {
-            if (!array1[index].equals(array2[index])) {
-                result = array2[index].compareTo(array1[index]);
-                break;
+        result = array2[0].compareTo(array1[0]);
+        if (result == 0) {
+            int size = Math.min(array1.length, array2.length);
+            if (array1.length == array2.length) {
+                for (int index = 0; index < size; index++) {
+                    result = array1[index].compareTo(array2[index]);
+                }
+                return result;
+            } else {
+                return Integer.compare(array1.length, array2.length);
             }
-        }
-        if (result == 0 && array1.length != array2.length) {
-            result = Integer.compare(array1.length, array2.length);
         }
         return result;
     }
