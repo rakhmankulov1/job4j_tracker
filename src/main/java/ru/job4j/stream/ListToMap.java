@@ -10,6 +10,6 @@ public class ListToMap {
                 .collect(Collectors.toMap(
                         Student::getSurname,
                         student -> student,
-                        (first, student) -> first.equals(student) ? first : student));
+                        (student, duplicate) -> student));
     }
 }
