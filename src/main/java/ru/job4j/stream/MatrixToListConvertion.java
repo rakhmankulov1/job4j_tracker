@@ -1,16 +1,15 @@
 package ru.job4j.stream;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class MatrixToListConvertion {
-    public static List<Integer> convert(int[][] matrix) {
+    public static List<Integer> convert(Integer[][] matrix) {
 
         return Stream.of(matrix)
-                .flatMapToInt(IntStream::of)
-                .boxed()
+                .flatMap(Arrays::stream)
                 .collect(Collectors.<Integer>toList());
     }
 }
