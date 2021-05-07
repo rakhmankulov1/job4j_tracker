@@ -1,6 +1,5 @@
 package ru.job4j.stream;
 
-import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class Card {
@@ -12,18 +11,24 @@ public class Card {
         Card.value = value;
     }
 
-    public static String[] getNames(Class<? extends Enum<?>> e) {
-        return Arrays.stream(e.getEnumConstants()).map(Enum::name).toArray(String[]::new);
+    public Card(Suit suit) {
+        Card.suit = suit;
+    }
+
+    public Card(Value value) {
+        Card.value = value;
     }
 
     public static void main(String[] args) {
-        String[] suits = getNames(Suit.class);
-        String[] values = getNames(Value.class);
-
-        Stream.of(suits)
-                .flatMap(level -> Stream.of(values)
-                        .map(value -> level + " " + value))
+        Stream.of(Suit.values())
+                .map(Card::new)
+                .flatMap(cards -> Stream.of(Value.values()))
+                .map(Card::new)
                 .forEach(System.out::println);
+    }
 
+    @Override
+    public String toString() {
+        return suit + " " + value;
     }
 }
