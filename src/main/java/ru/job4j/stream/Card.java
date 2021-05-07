@@ -11,24 +11,15 @@ public class Card {
         Card.value = value;
     }
 
-    public Card(Suit suit) {
-        Card.suit = suit;
-    }
-
-    public Card(Value value) {
-        Card.value = value;
-    }
-
-    public static void main(String[] args) {
-        Stream.of(Suit.values())
-                .map(Card::new)
-                .flatMap(cards -> Stream.of(Value.values()))
-                .map(Card::new)
-                .forEach(System.out::println);
-    }
-
     @Override
     public String toString() {
         return suit + " " + value;
+    }
+
+    public static void main(String[] args) {
+         Stream.of(Suit.values())
+                .flatMap(suits -> Stream.of(Value.values())
+                        .map(values -> new Card(suits, values)))
+                .forEach(System.out::println);
     }
 }
