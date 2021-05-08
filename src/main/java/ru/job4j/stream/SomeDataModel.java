@@ -15,18 +15,6 @@ public class SomeDataModel {
 
     private String gender;
 
-    public SomeDataModel(String name, String surname, byte age,
-                         String login, String password, boolean activated,
-                         String gender) {
-        this.name = name;
-        this.surname = surname;
-        this.age = age;
-        this.login = login;
-        this.password = password;
-        this.activated = activated;
-        this.gender = gender;
-    }
-
     @Override
     public String toString() {
         return "SomeDataModel{"
@@ -85,9 +73,7 @@ public class SomeDataModel {
         }
 
         SomeDataModel build() {
-            SomeDataModel user = new SomeDataModel(name,
-                    surname, age, login,
-                    password, activated, gender);
+            SomeDataModel user = new SomeDataModel();
             user.name = name;
             user.surname = surname;
             user.age = age;
