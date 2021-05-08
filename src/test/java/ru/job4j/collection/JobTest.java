@@ -4,7 +4,6 @@ package ru.job4j.collection;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -42,8 +41,8 @@ public class JobTest {
         Job item2 = new Job("beta", 2);
         Job item3 = new Job("gamma", 3);
         List<Job> input = Arrays.asList(item3, item1, item2);
-        List<Job> expected = Arrays.asList(item1, item2, item3);
-        Collections.sort(input, new JobIncsByPriority());
+        List<Job> expected = List.of(item1, item2, item3);
+        input.sort(new JobIncsByPriority());
         assertEquals(expected, input);
 
     }
@@ -54,8 +53,8 @@ public class JobTest {
         Job item2 = new Job("beta", 2);
         Job item3 = new Job("gamma", 3);
         List<Job> input = Arrays.asList(item3, item1, item2);
-        List<Job> expected = Arrays.asList(item1, item2, item3);
-        Collections.sort(input, new JobIncsByName());
+        List<Job> expected = List.of(item1, item2, item3);
+        input.sort(new JobIncsByName());
         assertEquals(expected, input);
 
     }
@@ -66,8 +65,8 @@ public class JobTest {
         Job item2 = new Job("beta", 2);
         Job item3 = new Job("gamma", 3);
         List<Job> input = Arrays.asList(item3, item1, item2);
-        List<Job> expected = Arrays.asList(item3, item2, item1);
-        Collections.sort(input, new JobDescByPriority());
+        List<Job> expected = List.of(item3, item2, item1);
+        input.sort(new JobDescByPriority());
         assertEquals(expected, input);
 
     }
@@ -78,8 +77,8 @@ public class JobTest {
         Job item2 = new Job("beta", 2);
         Job item3 = new Job("gamma", 3);
         List<Job> input = Arrays.asList(item3, item1, item2);
-        List<Job> expected = Arrays.asList(item3, item2, item1);
-        Collections.sort(input, new JobDescByName());
+        List<Job> expected = List.of(item3, item2, item1);
+        input.sort(new JobDescByName());
         assertEquals(expected, input);
 
     }
