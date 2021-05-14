@@ -44,7 +44,7 @@ public class BankService {
      */
     public void addAccount(String passport, Account account) {
         Optional<User> user = findByPassport(passport);
-        if (user != null) {
+        if (user.isPresent()) {
             List<Account> usersAccounts = users.get(user.get());
             if (!usersAccounts.contains(account)) {
                 usersAccounts.add(account);
@@ -79,15 +79,10 @@ public class BankService {
      * и реквизитом аккаунта пришедшими на вход метода.
      */
     public Optional<Account> findByRequisite(String passport, String requisite) {
-        Optional<User> a = findByPassport(passport);
-        Optional<Account> rsl = Optional.empty();
-        if (a.isPresent()) {
-            rsl = users.get(a.get())
-                    .stream()
-                    .filter(s -> s.getRequisite().equals(requisite))
-                    .findFirst();
-        }
-        return rsl;
+        Optional<User> user = findByPassport(passport);
+        return user.flatMap(value -> users.get(value).stream()
+                .filter(e -> e.getRequisite().equals(requisite))
+                .findFirst());
     }
 
     /**
@@ -116,7 +111,7 @@ public class BankService {
         Optional<Account> srcAccount = findByRequisite(srcPassport, srcRequisite);
         Optional<Account> destAccount = findByRequisite(destPassport, destRequisite);
 
-        if ((srcAccount != null && destAccount != null)
+        if ((srcAccount.isPresent() && destAccount.isPresent())
                 && (srcAccount.get().getBalance() >= amount)) {
             srcAccount.get().setBalance(srcAccount.get().getBalance() - amount);
             destAccount.get().setBalance(destAccount.get().getBalance() + amount);
